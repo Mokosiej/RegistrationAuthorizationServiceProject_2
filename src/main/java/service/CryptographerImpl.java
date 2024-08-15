@@ -1,31 +1,24 @@
 package service;
 
+import java.security.MessageDigest;
+import java.security.NoSuchAlgorithmException;
+
 public class CryptographerImpl implements Cryptographer {
-    @Override
-    public String encrypt(String password) {
-        StringBuilder sb = new StringBuilder();
-        for (int i = 0; i < password.length(); i++) {
-            char ch = password.charAt(i);
-            sb.append((char)(ch + 3));
-        }
-        return sb.toString();
-    }
-
-
-    @Override
-    public String decrypt(String password) {
-
+    public String hash(String password) {
+        try {
+            MessageDigest md = MessageDigest.getInstance("SHA-256");
+            byte[] bytes = md.digest(password.getBytes());
             StringBuilder sb = new StringBuilder();
-            for (int i = 0; i < password.length(); i++) {
-                char ch = password.charAt(i);
-                sb.append((char)(ch - 3));
+            for (byte b : bytes) {
+                sb.append(String.format("%02x", b));
             }
             return sb.toString();
+        } catch (NoSuchAlgorithmException e) {
+            throw new RuntimeException(e);
         }
+    }
 
-
-    @Override
-    public boolean checkPassword(String password) {
-        return false;
+    public boolean check(String password, String hashedPassword) {
+        return hash(password).equals(hashedPassword);
     }
 }

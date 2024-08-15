@@ -35,4 +35,3 @@ public class UserServiceImpl implements UserService {
         return password.length() >= 8 && password.matches(".*\\d.*") && password.matches(".*\\W.*");
     }
 }
-

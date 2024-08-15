@@ -6,20 +6,17 @@ import java.util.HashMap;
 import java.util.Map;
 
 public class UserRepositoryImpl implements UserRepository {
-    public Map<String, User> users = new HashMap<>();
+    private final Map<String, User> users = new HashMap<>();
 
-    @Override
-    public void save(User user) {
-
+    public boolean addUser(User user) {
+        if (users.containsKey(user.getUsername())) {
+            return false;
+        }
+        users.put(user.getUsername(), user);
+        return true;
     }
 
-    @Override
-    public boolean userNameOccupied(String username) {
-        return false;
-    }
-
-    @Override
-    public User findUser(String userName) {
-        return null;
+    public User getUser(String username) {
+        return users.get(username);
     }
 }
