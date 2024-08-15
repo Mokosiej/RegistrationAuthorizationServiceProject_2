@@ -21,23 +21,23 @@ class MainTest {
 
     @Test
     public void testRegisterSuccess() {
-        assertTrue(userService.register("user1", "Password1!"));
+        assertTrue(userService.usernameAndPaswordCheck("user1", "Password1!"));
     }
 
     @Test
     public void testRegisterFailWeakPassword() {
-        assertFalse(userService.register("user1", "pass"));
+        assertFalse(userService.usernameAndPaswordCheck("user1", "pass"));
     }
 
     @Test
     public void testLoginSuccess() {
-        userService.register("user1", "Password1!");
+        userService.usernameAndPaswordCheck("user1", "Password1!");
         assertTrue(userService.login("user1", "Password1!"));
     }
 
     @Test
     public void testLoginFailInvalidPassword() {
-        userService.register("user1", "Password1!");
+        userService.usernameAndPaswordCheck("user1", "Password1!");
         assertFalse(userService.login("user1", "wrongpassword"));
     }
 

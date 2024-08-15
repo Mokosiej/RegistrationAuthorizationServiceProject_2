@@ -13,14 +13,14 @@ public class SignIn {
         this.scanner = scanner;
     }
 
-    public void register() {
+    public void toRegister() {
         System.out.print("Enter username: ");
         String username = scanner.nextLine();
 
         System.out.print("Enter password: ");
         String password = scanner.nextLine();
 
-        if (userService.register(username, password)) {
+        if (userService.usernameAndPaswordCheck(username, password)) {
             System.out.println("Registration successful!");
         } else {
             System.out.println("Registration failed: Username might already exist or password is weak.");

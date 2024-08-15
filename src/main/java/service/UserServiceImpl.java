@@ -6,13 +6,14 @@ import repository.UserRepository;
 public class UserServiceImpl implements UserService {
     private final UserRepository userRepository;
     private final Cryptographer cryptographer;
+    private static final int MAX_LOGIN_ATTEMPTS = 3; // Максимальное количество попыток
 
     public UserServiceImpl(UserRepository userRepository, Cryptographer cryptographer) {
         this.userRepository = userRepository;
         this.cryptographer = cryptographer;
     }
 
-    public boolean register(String username, String password) {
+    public boolean usernameAndPaswordCheck(String username, String password) {
         if (username.length() < 3 || !isPasswordValid(password)) {
             return false;
         }
@@ -28,7 +29,20 @@ public class UserServiceImpl implements UserService {
             return false;
         }
 
-        return cryptographer.check(password, user.getPassword());
+        if (user.getFailedLoginAttempts() >= MAX_LOGIN_ATTEMPTS) {
+            System.out.println("To many tries, login functions is locked. ");
+            return false;
+        }
+
+        if (cryptographer.check(password, user.getPassword())) {
+            user.resetLoginAttempts();
+            return true;
+        } else {
+            user.setFailedLoginAttempts(user.getFailedLoginAttempts() + 1);
+            System.out.println("Wrong password, tries remain " +
+                    (MAX_LOGIN_ATTEMPTS - user.getFailedLoginAttempts()));
+            return false;
+        }
     }
 
     private boolean isPasswordValid(String password) {
