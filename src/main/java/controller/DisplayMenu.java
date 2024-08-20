@@ -1,6 +1,8 @@
 package controller;
 
+import com.sun.tools.javac.Main;
 import repository.UserRepository;
+
 import repository.UserRepositoryImpl;
 import service.Cryptographer;
 import service.CryptographerImpl;
@@ -10,17 +12,23 @@ import service.UserServiceImpl;
 import java.util.Scanner;
 
 public class DisplayMenu {
-    UserRepository userRepository = new UserRepositoryImpl();
-    Cryptographer cryptographer = new CryptographerImpl();
-    UserService userService = new UserServiceImpl(userRepository, cryptographer);
+    private final UserRepository userRepository;
+    private final Cryptographer cryptographer;
+    private final UserService userService;
+    private final Scanner scanner;
+    private final Login login;
+    private final SignIn signIn;
 
-    Scanner scanner = new Scanner(System.in);
-    Login login = new Login(userService, scanner);
-    SignIn signIn = new SignIn(userService, scanner);
 
     public DisplayMenu() {
-
+        this.userRepository = new UserRepositoryImpl();
+        this.cryptographer = new CryptographerImpl();
+        this.userService = new UserServiceImpl(userRepository, cryptographer);
+        this.scanner = new Scanner(System.in);
+        this.login = new Login(userService, scanner);
+        this.signIn = new SignIn(userService, scanner);
     }
+
 
     public void startProgram() {
     int choice = -1;
