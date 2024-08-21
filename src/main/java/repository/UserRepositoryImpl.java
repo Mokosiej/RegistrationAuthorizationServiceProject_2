@@ -19,4 +19,5 @@ public class UserRepositoryImpl implements UserRepository {
     public User getUser(String username) {
         return users.get(username);
     }
+
 }
