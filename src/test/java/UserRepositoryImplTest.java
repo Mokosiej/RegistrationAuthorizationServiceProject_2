@@ -19,7 +19,6 @@ public class UserRepositoryImplTest {
     public void testAddUser() {
         User user = new User("testUser", "Test@1234");
         assertTrue(userRepository.addUser(user));
-
         assertFalse(userRepository.addUser(user));
     }
 
@@ -40,17 +39,20 @@ public class UserRepositoryImplTest {
     public void testPasswordTooShort() {
         User shortPasswordUser = new User("user1", "short");
         assertTrue(userRepository.addUser(shortPasswordUser));
+        assertFalse(userRepository.addUser(shortPasswordUser));
     }
 
     @Test
     public void testPasswordMissingSymbol() {
         User missingSymbolUser = new User("user2", "Password123");
         assertTrue(userRepository.addUser(missingSymbolUser));
+        assertFalse(userRepository.addUser(missingSymbolUser));
     }
 
     @Test
     public void testPasswordMissingNumber() {
         User missingNumberUser = new User("user3", "Password!");
         assertTrue(userRepository.addUser(missingNumberUser));
+        assertFalse(userRepository.addUser(missingNumberUser));
     }
 }
