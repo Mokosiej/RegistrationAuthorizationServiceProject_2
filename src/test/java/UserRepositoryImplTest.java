@@ -39,18 +39,18 @@ public class UserRepositoryImplTest {
     @Test
     public void testPasswordTooShort() {
         User shortPasswordUser = new User("user1", "short");
-        assertTrue(userRepository.addUser(shortPasswordUser)); // Предполагаем, что добавление такого пользователя невозможно
+        assertTrue(userRepository.addUser(shortPasswordUser));
     }
 
     @Test
     public void testPasswordMissingSymbol() {
         User missingSymbolUser = new User("user2", "Password123");
-        assertTrue(userRepository.addUser(missingSymbolUser)); // Предполагаем, что добавление такого пользователя невозможно
+        assertTrue(userRepository.addUser(missingSymbolUser));
     }
 
     @Test
     public void testPasswordMissingNumber() {
         User missingNumberUser = new User("user3", "Password!");
-        assertTrue(userRepository.addUser(missingNumberUser)); // Предполагаем, что добавление такого пользователя невозможно
+        assertTrue(userRepository.addUser(missingNumberUser));
     }
 }
