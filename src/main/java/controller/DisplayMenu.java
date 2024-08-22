@@ -39,7 +39,7 @@ public class DisplayMenu {
                 choice = scanner.nextInt();
                 scanner.nextLine();
             } else {
-                System.out.println("Wrong input, pls use only number");
+                System.out.println("Неправильный ввод, пожалуйста, используйте только число");
                 scanner.nextLine();
                 continue;
             }
@@ -49,11 +49,11 @@ public class DisplayMenu {
                 case 1 -> signIn.toRegister();
                 case 2 -> login.login();
                 case 3 -> {
-                    System.out.println("Exiting...");
+                    System.out.println("Выход...");
                     scanner.close();
                     return;
                 }
-                default -> System.out.println("Invalid choice, try again");
+                default -> System.out.println("Неверный выбор, попробуйте еще раз");
             }
 
         }
@@ -63,7 +63,7 @@ public class DisplayMenu {
         System.out.println("1. Register");
         System.out.println("2. Login");
         System.out.println("3. Exit");
-        System.out.println("Pls choose an option (number only)");
+        System.out.println("Пожалуйста, выберите вариант (только номер)");
     }
 
 

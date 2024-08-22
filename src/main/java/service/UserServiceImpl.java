@@ -14,7 +14,7 @@ public class UserServiceImpl implements UserService {
     }
 
     public boolean usernameAndPaswordCheck(String username, String password) {
-        if (username.length() < 3 || !isPasswordValid(password)) {
+        if (username.length() < 3 || !isPasswordValid(password)) { //имя больше 3 символов
             return false;
         }
 
@@ -30,7 +30,7 @@ public class UserServiceImpl implements UserService {
         }
 
         if (user.getFailedLoginAttempts() >= MAX_LOGIN_ATTEMPTS) {
-            System.out.println("To many tries, login functions is locked. ");
+            System.out.println("После многочисленных попыток функции входа в систему блокируются.");
             return false;
         }
 
@@ -39,7 +39,7 @@ public class UserServiceImpl implements UserService {
             return true;
         } else {
             user.setFailedLoginAttempts(user.getFailedLoginAttempts() + 1);
-            System.out.println("Wrong password, tries remain " +
+            System.out.println("Неправильный пароль, попытки остаются" +
                     (MAX_LOGIN_ATTEMPTS - user.getFailedLoginAttempts()));
             return false;
         }
@@ -47,5 +47,5 @@ public class UserServiceImpl implements UserService {
 
     private boolean isPasswordValid(String password) {
         return password.length() >= 8 && password.matches(".*\\d.*") && password.matches(".*\\W.*");
-    }
+    } //ввод пароля 8 символов, наличие цифры .*\\d.* ,  .*\\W.* проверяет наличие хотя бы одного неалфавитного символа
 }

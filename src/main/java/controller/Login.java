@@ -14,16 +14,16 @@ public class Login {
     }
 
     public void login() {
-        System.out.print("Enter username: ");
+        System.out.print("Введите имя пользователя: ");
         String username = scanner.nextLine();
 
-        System.out.print("Enter password: ");
+        System.out.print("Введите пароль:");
         String password = scanner.nextLine();
 
         if (userService.login(username, password)) {
-            System.out.println("Login successful!");
+            System.out.println("Вход выполнен успешно!");
         } else {
-            System.out.println("Login failed: Invalid username or password.");
+            System.out.println("Ошибка входа: Неверное имя пользователя или пароль.");
         }
     }
 }

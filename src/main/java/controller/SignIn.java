@@ -14,16 +14,16 @@ public class SignIn {
     }
 
     public void toRegister() {
-        System.out.print("Enter username: ");
+        System.out.print("Введите имя пользователя:");
         String username = scanner.nextLine();
 
-        System.out.print("Enter password: ");
+        System.out.print("Введите пароль:");
         String password = scanner.nextLine();
 
         if (userService.usernameAndPaswordCheck(username, password)) {
-            System.out.println("Registration successful!");
+            System.out.println("Регистрация прошла успешно!");
         } else {
-            System.out.println("Registration failed: Username might already exist or password is weak.");
+            System.out.println("Регистрация не удалась: возможно, имя пользователя уже существует или пароль ненадежен.");
         }
     }
 }
