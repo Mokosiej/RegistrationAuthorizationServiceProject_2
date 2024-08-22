@@ -10,7 +10,7 @@ import service.UserServiceImpl;
 
 import static org.junit.jupiter.api.Assertions.*;
 
-class UserServiceTest {
+class  UserServiceTest {
     private UserService userService;
 
     @BeforeEach
