@@ -31,7 +31,7 @@ public class DisplayMenu {
 
 
     public void startProgram() {
-    int choice = -1;
+        int choice = -1;
 
         while (true) {
             displayMenu();
