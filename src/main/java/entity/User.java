@@ -13,14 +13,17 @@ public class User {
     }
 
     public int getFailedLoginAttempts() {
+
         return failedLoginAttempts;
     }
 
     public void setFailedLoginAttempts(int failedLoginAttempts) {
+
         this.failedLoginAttempts = failedLoginAttempts;
     }
 
     public String getUsername() {
+
         return username;
     }
 
