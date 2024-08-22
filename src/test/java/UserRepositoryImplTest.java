@@ -18,6 +18,7 @@ public class UserRepositoryImplTest {
     @Test
     public void testAddUser() {
         User user = new User("testUser", "Test@1234");
+        // добавление пользователя в репозиторий и предотвращение дублирования пользователей
         assertTrue(userRepository.addUser(user));
         assertFalse(userRepository.addUser(user));
     }
@@ -26,12 +27,13 @@ public class UserRepositoryImplTest {
     public void testGetUser() {
         User user = new User("testUser", "Test@1234");
         userRepository.addUser(user);
-
+        //проверяет извлечение пользователя из репозитория по имени и отсутствие пользователя
         User fetchedUser = userRepository.getUser("testUser");
         assertNotNull(fetchedUser);
         assertEquals("testUser", fetchedUser.getUsername());
         assertEquals("Test@1234", fetchedUser.getPassword());
 
         assertNull(userRepository.getUser("nonExistentUser"));
+
     }
 }

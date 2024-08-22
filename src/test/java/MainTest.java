@@ -21,22 +21,26 @@ class MainTest {
 
     @Test
     public void testRegisterSuccess() {
+        // тест проверяет успешную регистрацию пользователя с корректным именем пользователя и сильным паролем
         assertTrue(userService.usernameAndPaswordCheck("user1", "Password1!"));
     }
 
     @Test
     public void testRegisterFailWeakPassword() {
+        // проверяет неудачную регистрацию пользователя с недостаточно сложным паролем
         assertFalse(userService.usernameAndPaswordCheck("user1", "pass"));
     }
 
     @Test
     public void testLoginSuccess() {
+        // проверяет успешный вход в систему после успешной регистрации
         userService.usernameAndPaswordCheck("user1", "Password1!");
         assertTrue(userService.login("user1", "Password1!"));
     }
 
     @Test
     public void testLoginFailInvalidPassword() {
+        // проверяет неудачный вход в систему при вводе неверного пароля
         userService.usernameAndPaswordCheck("user1", "Password1!");
         assertFalse(userService.login("user1", "wrongpassword"));
     }
